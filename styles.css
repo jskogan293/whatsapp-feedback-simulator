@@ -12,9 +12,9 @@
 
 :root {
     /* WhatsApp Green Gradient Palette */
-    --gradient-start: #E8F5E9;
-    --gradient-middle: #B2DFDB;
-    --gradient-end: #E0F7FA;
+    --gradient-start: #075E54;
+    --gradient-middle: #128C7E;
+    --gradient-end: #25D366;
 
     /* Accent colors */
     --whatsapp-green: #25D366;
@@ -91,7 +91,7 @@ html {
 
 body {
     font-family: var(--font-family);
-    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-middle) 50%, var(--gradient-end) 100%);
+    background: linear-gradient(135deg, #075E54 0%, #128C7E 40%, #25D366 100%);
     background-attachment: fixed;
     color: var(--text-primary);
     line-height: 1.5;
