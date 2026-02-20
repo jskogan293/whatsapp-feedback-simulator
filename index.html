@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Content Feedback Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">💬✨</span>
+                <span class="logo-text">Content Feedback Simulator</span>
+            </div>
+            <button class="meet-experts-btn" id="meetExpertsBtn">
+                <span>👋</span> Meet the Experts
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-line">
+                <h1>Get instant feedback on your content</h1>
+                <p class="hero-subtitle">Review your work from 6 WhatsApp expert perspectives — before you go to review.</p>
+            </div>
+        </section>
+
+        <!-- Input Section -->
+        <section class="input-section">
+            <div class="input-container">
+                <div class="input-methods">
+                    <!-- Image Upload -->
+                    <div class="input-card">
+                        <div class="input-card-header">
+                            <span class="input-icon">🖼️</span>
+                            <span class="input-title">UPLOAD IMAGES</span>
+                            <span class="image-count" id="imageCount"></span>
+                        </div>
+                        <div class="drop-zone" id="dropZone">
+                            <div class="drop-zone-content" id="dropZoneContent">
+                                <span class="drop-icon">📤</span>
+                                <p>Drop screenshots here</p>
+                                <p class="drop-hint">or ⌘V to paste from clipboard</p>
+                                <p class="drop-hint">Click to browse files</p>
+                                <p class="drop-hint">Supports multiple images at once</p>
+                            </div>
+                            <input type="file" id="fileInput" accept="image/*" multiple hidden>
+                            <div class="images-preview" id="imagesPreview"></div>
+                        </div>
+                        <button class="clear-images-btn" id="clearImagesBtn" hidden>
+                            <span>🗑️</span> Clear all images
+                        </button>
+                    </div>
+
+                    <div class="input-divider">
+                        <span>OR</span>
+                    </div>
+
+                    <!-- Text Input -->
+                    <div class="input-card">
+                        <div class="input-card-header">
+                            <span class="input-icon">📝</span>
+                            <span class="input-title">PASTE TEXT</span>
+                        </div>
+                        <textarea
+                            class="text-input"
+                            id="textInput"
+                            placeholder="Type or paste your strings here...
+
+Example:
+Title: Turn on automatic backups
+Body: Keep your chats safe. Back up your messages to Google Drive.
+Button: Enable"
+                        ></textarea>
+                    </div>
+                </div>
+
+                <!-- Context Input -->
+                <div class="context-section">
+                    <div class="context-header">
+                        <span class="context-icon">📋</span>
+                        <span class="context-title">Context (optional)</span>
+                    </div>
+                    <textarea
+                        class="context-input"
+                        id="contextInput"
+                        placeholder="What's this feature? Who's it for? Any constraints? (e.g., 'This is an upsell sheet for backup feature, targeting Android users in India')"
+                    ></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <button class="submit-btn" id="submitBtn">
+                    <span class="btn-icon">🚀</span>
+                    <span class="btn-text">Get Feedback</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Loading State -->
+        <section class="loading-section" id="loadingSection" hidden>
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <p class="loading-text" id="loadingText">Analyzing your content...</p>
+                <p class="loading-subtext" id="loadingSubtext">Getting feedback from 6 expert perspectives</p>
+                <div class="loading-progress">
+                    <div class="loading-progress-bar" id="loadingProgressBar"></div>
+                </div>
+                <p class="loading-expert" id="loadingExpert">🛡️ PXFN is reviewing...</p>
+            </div>
+        </section>
+
+        <!-- Feedback Section -->
+        <section class="feedback-section" id="feedbackSection" hidden>
+            <div class="section-header">
+                <span class="section-icon">📊</span>
+                <h2>FEEDBACK</h2>
+            </div>
+
+            <div class="agent-grid" id="agentGrid">
+                <!-- Agent cards will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Checklist Section -->
+        <section class="checklist-section" id="checklistSection" hidden>
+            <div class="section-header">
+                <span class="section-icon">📋</span>
+                <h2>YOUR CHECKLIST</h2>
+            </div>
+
+            <div class="checklist-container">
+                <!-- Blockers -->
+                <div class="checklist-category" id="blockersCategory" hidden>
+                    <div class="category-header blockers">
+                        <span class="category-icon">🔴</span>
+                        <span class="category-title">BLOCKERS</span>
+                    </div>
+                    <div class="checklist-items" id="blockersList"></div>
+                </div>
+
+                <!-- Should Fix -->
+                <div class="checklist-category" id="shouldFixCategory" hidden>
+                    <div class="category-header should-fix">
+                        <span class="category-icon">🟡</span>
+                        <span class="category-title">SHOULD FIX</span>
+                    </div>
+                    <div class="checklist-items" id="shouldFixList"></div>
+                </div>
+
+                <!-- Nice to Have -->
+                <div class="checklist-category" id="niceToHaveCategory" hidden>
+                    <div class="category-header nice-to-have">
+                        <span class="category-icon">🟢</span>
+                        <span class="category-title">NICE TO HAVE</span>
+                    </div>
+                    <div class="checklist-items" id="niceToHaveList"></div>
+                </div>
+
+                <!-- What's Working -->
+                <div class="checklist-category whats-working" id="whatsWorkingCategory" hidden>
+                    <div class="category-header working">
+                        <span class="category-icon">✅</span>
+                        <span class="category-title">WHAT'S WORKING</span>
+                    </div>
+                    <div class="working-items" id="workingList"></div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="checklist-actions">
+                <button class="action-btn copy-btn" id="copyBtn">
+                    <span class="btn-icon">📋</span>
+                    <span class="btn-text">Copy Checklist</span>
+                </button>
+                <button class="action-btn reset-btn" id="resetBtn">
+                    <span class="btn-icon">🔄</span>
+                    <span class="btn-text">Start Over</span>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>WhatsApp Content Feedback Simulator • Internal Tool</p>
+            <p class="footer-subtitle">Built for WhatsApp Content Design by Jessica Kogan</p>
+        </div>
+    </footer>
+
+    <!-- Meet the Experts Modal -->
+    <div class="experts-modal" id="expertsModal">
+        <div class="experts-modal-content">
+            <button class="experts-modal-close" id="expertsModalClose">×</button>
+            <h2 class="experts-modal-title">👋 Meet the Experts</h2>
+            <p class="experts-modal-subtitle">These AI-powered reviewers are trained on WhatsApp's internal guidelines and best practices.</p>
+
+            <div class="experts-grid">
+                <div class="expert-card" data-expert="PXFN">
+                    <div class="expert-header">
+                        <span class="expert-icon">🛡️</span>
+                        <div>
+                            <h3>PXFN</h3>
+                            <span class="expert-role">Legal + Policy + Risk</span>
+                        </div>
+                    </div>
+                    <p class="expert-description">Reviews content for policy violations, legal concerns, and risk issues. Trained on WhatsApp's content policies, GDPR/CCPA compliance guidelines, and Meta's advertising policies.</p>
+                    <div class="expert-looks-for">
+                        <strong>Looks for:</strong>
+                        <ul>
+                            <li>Misleading or promotional language</li>
+                            <li>Unverified claims ("guaranteed", "100%")</li>
+                            <li>Privacy and data handling accuracy</li>
+                            <li>Regulatory compliance issues</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="expert-card" data-expert="Designer">
+                    <div class="expert-header">
+                        <span class="expert-icon">🎨</span>
+                        <div>
+                            <h3>Designer</h3>
+                            <span class="expert-role">Product Designer</span>
+                        </div>
+                    </div>
+                    <p class="expert-description">Evaluates visual hierarchy, layout, and design system compliance. Trained on the WhatsApp Design System (WDS) patterns and component guidelines.</p>
+                    <div class="expert-looks-for">
+                        <strong>Looks for:</strong>
+                        <ul>
+                            <li>Information hierarchy and visual flow</li>
+                            <li>WDS pattern consistency</li>
+                            <li>Typography and spacing issues</li>
+                            <li>Button/CTA placement</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="expert-card" data-expert="PM">
+                    <div class="expert-header">
+                        <span class="expert-icon">📊</span>
+                        <div>
+                            <h3>PM</h3>
+                            <span class="expert-role">Product Manager</span>
+                        </div>
+                    </div>
+                    <p class="expert-description">Reviews content for product alignment and user value. Trained on product strategy frameworks and WhatsApp's approach to feature development.</p>
+                    <div class="expert-looks-for">
+                        <strong>Looks for:</strong>
+                        <ul>
+                            <li>Clear value proposition</li>
+                            <li>Logical user flow</li>
+                            <li>Feature completeness</li>
+                            <li>Edge cases and error states</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="expert-card" data-expert="GTM">
+                    <div class="expert-header">
+                        <span class="expert-icon">📣</span>
+                        <div>
+                            <h3>GTM</h3>
+                            <span class="expert-role">Go-to-Market / PMM</span>
+                        </div>
+                    </div>
+                    <p class="expert-description">Evaluates messaging for market readiness and global reach. Trained on WhatsApp brand guidelines, localization best practices, and market-specific considerations.</p>
+                    <div class="expert-looks-for">
+                        <strong>Looks for:</strong>
+                        <ul>
+                            <li>Brand voice consistency</li>
+                            <li>Localization readiness (30% text expansion)</li>
+                            <li>Call-to-action effectiveness</li>
+                            <li>Cultural sensitivity</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="expert-card" data-expert="UXR">
+                    <div class="expert-header">
+                        <span class="expert-icon">🔬</span>
+                        <div>
+                            <h3>UXR</h3>
+                            <span class="expert-role">UX Researcher</span>
+                        </div>
+                    </div>
+                    <p class="expert-description">Reviews from a user comprehension perspective. Trained on UX research methodologies and common usability patterns from WhatsApp user studies.</p>
+                    <div class="expert-looks-for">
+                        <strong>Looks for:</strong>
+                        <ul>
+                            <li>User comprehension issues</li>
+                            <li>Cognitive load problems</li>
+                            <li>Mental model mismatches</li>
+                            <li>Decision-making friction</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="expert-card" data-expert="Content">
+                    <div class="expert-header">
+                        <span class="expert-icon">✍️</span>
+                        <div>
+                            <h3>Content</h3>
+                            <span class="expert-role">Content Designer</span>
+                        </div>
+                    </div>
+                    <p class="expert-description">Reviews for quality, clarity, and voice consistency. Trained on WhatsApp's voice and tone guidelines, UX writing best practices, and localization constraints.</p>
+                    <div class="expert-looks-for">
+                        <strong>Looks for:</strong>
+                        <ul>
+                            <li>Grammar, spelling, punctuation</li>
+                            <li>WhatsApp voice (simple, human, clear)</li>
+                            <li>Conciseness and clarity</li>
+                            <li>String length constraints</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose">×</button>
+            <button class="lightbox-nav lightbox-prev" id="lightboxPrev">‹</button>
+            <img class="lightbox-image" id="lightboxImage" src="" alt="Expanded view">
+            <button class="lightbox-nav lightbox-next" id="lightboxNext">›</button>
+            <div class="lightbox-counter" id="lightboxCounter"></div>
+        </div>
+    </div>
+
+    <!-- Load JavaScript at the very end -->
+    <script src="app.js"></script>
+</body>
+</html>

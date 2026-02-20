@@ -1,0 +1,1471 @@
+/* WhatsApp Content Feedback Simulator - Minimal Green Redesign */
+/* Clean, minimal aesthetic with soft gradients and frosted glass effects */
+
+/* ==========================================
+   CSS Variables - WhatsApp Green Gradient Palette
+   ========================================== */
+
+/* Hidden attribute override - ensures elements with hidden attribute stay hidden */
+[hidden] {
+    display: none !important;
+}
+
+:root {
+    /* WhatsApp Green Gradient Palette */
+    --gradient-start: #E8F5E9;
+    --gradient-middle: #B2DFDB;
+    --gradient-end: #E0F7FA;
+
+    /* Accent colors */
+    --whatsapp-green: #25D366;
+    --whatsapp-dark: #075E54;
+    --whatsapp-dark-green: #128C7E;
+    --whatsapp-green-light: rgba(37, 211, 102, 0.1);
+    --whatsapp-green-hover: #20BD5A;
+
+    /* Frosted Glass Card Colors */
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --card-border: rgba(255, 255, 255, 0.5);
+    --card-shadow: rgba(0, 0, 0, 0.08);
+
+    /* Background Colors */
+    --bg-primary: #FFFFFF;
+    --bg-secondary: transparent;
+    --bg-tertiary: rgba(255, 255, 255, 0.6);
+    --bg-elevated: rgba(255, 255, 255, 0.95);
+    --bg-hover: rgba(255, 255, 255, 0.9);
+
+    /* Text Colors */
+    --text-primary: #1a1a1a;
+    --text-secondary: #54656F;
+    --text-tertiary: #666666;
+    --text-inverse: #FFFFFF;
+
+    /* Border & Divider Colors */
+    --border-color: #e0e0e0;
+    --divider-color: rgba(0, 0, 0, 0.08);
+
+    /* Status Colors */
+    --blocker-red: #DC3545;
+    --blocker-bg: rgba(220, 53, 69, 0.1);
+    --warning-yellow: #FFC107;
+    --warning-bg: rgba(255, 193, 7, 0.15);
+    --success-green: #25D366;
+    --success-bg: rgba(37, 211, 102, 0.1);
+
+    /* Typography */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-xxl: 48px;
+
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 50%;
+
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.25s ease;
+}
+
+/* ==========================================
+   Reset & Base Styles
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-middle) 50%, var(--gradient-end) 100%);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================
+   Header - Minimal & Transparent
+   ========================================== */
+.header {
+    background: transparent;
+    padding: var(--spacing-lg) var(--spacing-xxl);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.logo-icon {
+    font-size: 28px;
+}
+
+.logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+}
+
+/* ==========================================
+   Main Content
+   ========================================== */
+.main {
+    flex: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    width: 100%;
+}
+
+/* ==========================================
+   Hero Section - Bold Typography
+   ========================================== */
+.hero {
+    text-align: center;
+    padding: var(--spacing-xl) var(--spacing-md) var(--spacing-xxl);
+}
+
+.hero-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.hero h1 {
+    font-size: clamp(1.25rem, 4vw, 3.5rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    white-space: nowrap;
+}
+
+.hero-subtitle {
+    font-size: clamp(0.75rem, 1.8vw, 1.25rem);
+    color: var(--text-tertiary);
+    line-height: 1.5;
+    margin: 0;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem;
+    }
+}
+
+/* ==========================================
+   Frosted Glass Content Card
+   ========================================== */
+.input-section {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--card-border);
+    box-shadow: 0 8px 32px var(--card-shadow);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.input-container {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Agent Grid - 3x2 grid layout for better visibility */
+.agent-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+@media (max-width: 1000px) {
+    .agent-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .agent-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Agent Card - Uniform sizing with clear structure */
+.agent-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    transition: all var(--transition-normal);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+    box-shadow: 0 2px 8px var(--card-shadow);
+}
+
+.agent-card:hover {
+    box-shadow: 0 4px 16px var(--card-shadow);
+}
+
+.agent-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--divider-color);
+}
+
+.agent-card-header-left {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    cursor: pointer;
+    padding: var(--spacing-xs);
+    margin: calc(-1 * var(--spacing-xs));
+    border-radius: var(--radius-sm);
+    transition: background-color var(--transition-fast);
+}
+
+.agent-card-header-left:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.agent-card-header-left:hover .agent-name {
+    color: var(--whatsapp-dark-green);
+}
+
+.agent-icon {
+    font-size: 20px;
+}
+
+.agent-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.agent-status {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+}
+
+.agent-status.no-issues {
+    color: var(--success-green);
+    background-color: var(--success-bg);
+}
+
+.agent-status.has-issues {
+    color: #B45309;
+    background-color: var(--warning-bg);
+}
+
+.agent-status.has-blockers {
+    color: var(--blocker-red);
+    background-color: var(--blocker-bg);
+}
+
+.status-icon {
+    font-size: 12px;
+}
+
+/* Agent Details - Content area */
+.agent-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    overflow-y: auto;
+    max-height: 250px;
+}
+
+/* Issue Sections - Clear visual separation */
+.issue-section {
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-sm);
+}
+
+.issue-section.blocker-section {
+    background: var(--blocker-bg);
+    border-left: 3px solid var(--blocker-red);
+}
+
+.issue-section.should-fix-section {
+    background: var(--warning-bg);
+    border-left: 3px solid #F59E0B;
+}
+
+.issue-section.nice-to-have-section {
+    background: rgba(37, 211, 102, 0.05);
+    border-left: 3px solid var(--success-green);
+}
+
+.issue-section-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-xs);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.issue-icon {
+    font-size: 10px;
+}
+
+.issue-label {
+    color: var(--text-tertiary);
+}
+
+.blocker-section .issue-label {
+    color: var(--blocker-red);
+}
+
+.should-fix-section .issue-label {
+    color: #B45309;
+}
+
+.nice-to-have-section .issue-label {
+    color: var(--whatsapp-dark-green);
+}
+
+/* Issue List */
+.issue-list {
+    margin: 0;
+    padding-left: var(--spacing-md);
+}
+
+.issue-item {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    line-height: 1.4;
+    list-style-type: disc;
+}
+
+.issue-item:last-child {
+    margin-bottom: 0;
+}
+
+.issue-item.blocker {
+    color: var(--blocker-red);
+}
+
+.issue-item.should-fix {
+    color: #92400E;
+}
+
+/* Positive/What's Working Section */
+.positive-section {
+    background-color: var(--success-bg);
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-sm);
+    border-left: 3px solid var(--success-green);
+}
+
+.positive-section-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-xs);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.positive-icon {
+    font-size: 10px;
+}
+
+.positive-label {
+    color: var(--success-green);
+}
+
+.positive-list {
+    margin: 0;
+    padding-left: var(--spacing-md);
+}
+
+.positive-item {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    line-height: 1.4;
+    list-style-type: none;
+    position: relative;
+}
+
+.positive-item::before {
+    content: '✓';
+    position: absolute;
+    left: -14px;
+    color: var(--success-green);
+    font-weight: 700;
+    font-size: 11px;
+}
+
+.positive-item:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .input-methods {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .input-section {
+        padding: var(--spacing-lg);
+    }
+}
+
+.input-card {
+    background: transparent;
+    border-radius: var(--radius-md);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 180px;
+}
+
+.input-card-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+}
+
+.input-icon {
+    font-size: 14px;
+}
+
+.input-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-tertiary);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.input-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-tertiary);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 0 var(--spacing-sm);
+}
+
+@media (max-width: 768px) {
+    .input-methods {
+        grid-template-columns: 1fr;
+    }
+
+    .input-divider {
+        padding: var(--spacing-sm) 0;
+    }
+}
+
+/* ==========================================
+   Drop Zone - Clean Minimal Style
+   ========================================== */
+.drop-zone {
+    flex: 1;
+    min-height: 150px;
+    border: 1px dashed var(--border-color);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    background-color: rgba(255, 255, 255, 0.5);
+    overflow: auto;
+}
+
+.drop-zone:hover,
+.drop-zone.drag-over {
+    border-color: var(--whatsapp-green);
+    background-color: var(--whatsapp-green-light);
+}
+
+.drop-zone-content {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: var(--spacing-sm);
+    width: 100%;
+}
+
+.drop-icon {
+    font-size: 28px;
+    display: block;
+    margin-bottom: var(--spacing-xs);
+}
+
+.drop-zone-content p {
+    margin: 2px 0;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.drop-hint {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    white-space: nowrap;
+}
+
+/* Image Preview */
+.images-preview {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    width: 100%;
+}
+
+.image-preview-item {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background-color: var(--bg-tertiary);
+    cursor: pointer;
+    transition: transform var(--transition-fast);
+}
+
+.image-preview-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px var(--card-shadow);
+}
+
+.image-preview-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-preview-item .image-number {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    background-color: var(--whatsapp-green);
+    color: var(--text-inverse);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 10px;
+}
+
+.image-preview-item .remove-image {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 20px;
+    height: 20px;
+    border-radius: var(--radius-full);
+    border: none;
+    background-color: var(--blocker-red);
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.image-preview-item:hover .remove-image {
+    opacity: 1;
+}
+
+.image-count {
+    font-size: 12px;
+    color: var(--whatsapp-green);
+    font-weight: 600;
+    margin-left: auto;
+}
+
+.clear-images-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    width: 100%;
+    padding: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.clear-images-btn:hover {
+    background-color: var(--blocker-bg);
+    border-color: var(--blocker-red);
+    color: var(--blocker-red);
+}
+
+.drop-zone.has-images {
+    border-style: solid;
+    border-color: var(--whatsapp-green);
+    background-color: var(--whatsapp-green-light);
+}
+
+.drop-zone.has-images .drop-zone-content {
+    display: none;
+}
+
+/* ==========================================
+   Text Input - Clean Minimal Style
+   ========================================== */
+.text-input {
+    flex: 1;
+    min-height: 150px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-family: var(--font-family);
+    font-size: 13px;
+    resize: none;
+    transition: all var(--transition-fast);
+    background-color: rgba(255, 255, 255, 0.5);
+    color: var(--text-primary);
+}
+
+.text-input:focus {
+    outline: none;
+    border-color: var(--whatsapp-green);
+    box-shadow: 0 0 0 3px var(--whatsapp-green-light);
+}
+
+.text-input::placeholder {
+    color: var(--text-tertiary);
+}
+
+/* Context Section */
+.context-section {
+    margin-bottom: var(--spacing-xl);
+}
+
+.context-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+.context-icon {
+    font-size: 16px;
+}
+
+.context-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-tertiary);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.context-input {
+    width: 100%;
+    min-height: 70px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-md);
+    font-family: var(--font-family);
+    font-size: 14px;
+    resize: vertical;
+    transition: all var(--transition-fast);
+    background-color: white;
+    color: var(--text-primary);
+}
+
+.context-input:focus {
+    outline: none;
+    border-color: var(--whatsapp-green);
+    box-shadow: 0 0 0 3px var(--whatsapp-green-light);
+}
+
+.context-input::placeholder {
+    color: var(--text-tertiary);
+}
+
+/* ==========================================
+   Submit Button - Black/Solid Style
+   ========================================== */
+.submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+    padding: var(--spacing-md) var(--spacing-xl);
+    background-color: var(--text-primary);
+    color: var(--text-inverse);
+    border: none;
+    border-radius: var(--radius-xl);
+    font-family: var(--font-family);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.submit-btn:hover:not(:disabled) {
+    background-color: #333333;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-icon {
+    font-size: 18px;
+}
+
+/* ==========================================
+   Loading Section
+   ========================================== */
+.loading-section {
+    text-align: center;
+    padding: var(--spacing-xxl);
+}
+
+.loading-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-lg);
+}
+
+.input-methods {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: var(--spacing-lg);
+    align-items: stretch;
+    margin-bottom: var(--spacing-md);
+}
+
+.loading-spinner {
+    width: 48px;
+    height: 48px;
+    border: 3px solid var(--bg-tertiary);
+    border-top-color: var(--whatsapp-green);
+    border-radius: var(--radius-full);
+    animation: spin 0.8s linear infinite;
+    margin-bottom: var(--spacing-sm);
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.loading-subtext {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+}
+
+.loading-progress {
+    width: 100%;
+    max-width: 300px;
+    height: 6px;
+    background-color: var(--bg-tertiary);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    margin-bottom: var(--spacing-md);
+}
+
+.loading-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--whatsapp-green), var(--whatsapp-dark-green));
+    border-radius: var(--radius-xl);
+    transition: width 0.3s ease;
+}
+
+.loading-expert {
+    font-size: 13px;
+    color: var(--text-tertiary);
+    font-weight: 500;
+    min-height: 20px;
+    margin-top: var(--spacing-sm);
+}
+
+/* ==========================================
+   Feedback Section - Frosted Glass Card
+   ========================================== */
+.feedback-section {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--card-border);
+    box-shadow: 0 8px 32px var(--card-shadow);
+    padding: var(--spacing-xxl);
+    margin-bottom: var(--spacing-xl);
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--divider-color);
+}
+
+.section-icon {
+    font-size: 20px;
+}
+
+.section-header h2 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-tertiary);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.expand-hint {
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-tertiary);
+    margin-top: var(--spacing-md);
+}
+
+/* Feedback Divider */
+.feedback-divider {
+    height: 1px;
+    background-color: var(--divider-color);
+    margin: var(--spacing-sm) 0;
+}
+
+/* Positive Section */
+.positive-section {
+    background-color: var(--success-bg);
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-sm);
+}
+
+.positive-section-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-xs);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.positive-icon {
+    font-size: 10px;
+}
+
+.positive-label {
+    color: var(--success-green);
+}
+
+.positive-list {
+    margin: 0;
+    padding-left: var(--spacing-md);
+}
+
+.positive-item {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+    line-height: 1.5;
+    list-style-type: none;
+    position: relative;
+}
+
+.positive-item::before {
+    content: '✓';
+    position: absolute;
+    left: -16px;
+    color: var(--success-green);
+    font-weight: 700;
+}
+
+/* ==========================================
+   Checklist Section - Frosted Glass Card
+   ========================================== */
+.checklist-section {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--card-border);
+    box-shadow: 0 8px 32px var(--card-shadow);
+    padding: var(--spacing-xxl);
+    margin-bottom: var(--spacing-xl);
+}
+
+.checklist-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.checklist-category {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.category-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.category-header.blockers {
+    background-color: var(--blocker-bg);
+    color: var(--blocker-red);
+}
+
+.category-header.should-fix {
+    background-color: var(--warning-bg);
+    color: #92400E;
+}
+
+.category-header.nice-to-have {
+    background-color: var(--success-bg);
+    color: var(--whatsapp-dark-green);
+}
+
+.category-header.working {
+    background-color: var(--success-bg);
+    color: var(--whatsapp-dark-green);
+}
+
+.category-icon {
+    font-size: 14px;
+}
+
+.checklist-items {
+    padding: var(--spacing-md);
+    background: rgba(255, 255, 255, 0.8);
+}
+
+/* Checklist Item */
+.checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) 0;
+    font-size: 13px;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--divider-color);
+}
+
+.checklist-item:last-child {
+    border-bottom: none;
+}
+
+.checklist-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    accent-color: var(--whatsapp-green);
+    cursor: pointer;
+}
+
+.checklist-item.checked {
+    text-decoration: line-through;
+    color: var(--text-tertiary);
+}
+
+.checklist-item-text {
+    flex: 1;
+    line-height: 1.4;
+}
+
+/* What's Working */
+.working-items {
+    padding: var(--spacing-md);
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+.working-item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: 4px 12px;
+    background-color: var(--success-bg);
+    border-radius: var(--radius-xl);
+    font-size: 12px;
+    color: var(--whatsapp-dark-green);
+}
+
+.working-item::before {
+    content: '✓';
+    font-weight: 700;
+}
+
+/* Checklist Actions */
+.checklist-actions {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--divider-color);
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-xl);
+    font-family: var(--font-family);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.copy-btn {
+    background-color: var(--text-primary);
+    color: var(--text-inverse);
+    border: none;
+}
+
+.copy-btn:hover {
+    background-color: #333333;
+}
+
+.reset-btn {
+    background-color: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+}
+
+.reset-btn:hover {
+    border-color: var(--text-secondary);
+    background-color: var(--bg-tertiary);
+}
+
+/* ==========================================
+   Footer - Minimal & Transparent
+   ========================================== */
+.footer {
+    background: transparent;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    margin-top: auto;
+}
+
+.footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    text-align: center;
+    color: var(--text-tertiary);
+    font-size: 12px;
+}
+
+.footer-subtitle {
+    font-size: 11px;
+    margin-top: var(--spacing-xs);
+}
+
+/* ==========================================
+   Toast Notification
+   ========================================== */
+.toast {
+    position: fixed;
+    bottom: var(--spacing-xl);
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background-color: var(--text-primary);
+    color: var(--text-inverse);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-xl);
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0;
+    transition: all var(--transition-normal);
+    z-index: 1000;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+/* ==========================================
+   Lightbox Modal
+   ========================================== */
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+}
+
+.lightbox-image {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: var(--radius-md);
+}
+
+.lightbox-close {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: var(--radius-full);
+    color: var(--text-primary);
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2001;
+}
+
+.lightbox-close:hover {
+    background-color: #FFFFFF;
+}
+
+.lightbox-nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: var(--radius-full);
+    color: var(--text-primary);
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2001;
+}
+
+.lightbox-nav:hover {
+    background-color: #FFFFFF;
+}
+
+.lightbox-nav:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.lightbox-prev {
+    left: 20px;
+}
+
+.lightbox-next {
+    right: 20px;
+}
+
+.lightbox-counter {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    color: var(--text-primary);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-xl);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* ==========================================
+   Meet the Experts Modal - Frosted Glass
+   ========================================== */
+.experts-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 3000;
+    align-items: flex-start;
+    justify-content: center;
+    overflow-y: auto;
+    padding: var(--spacing-xl);
+}
+
+.experts-modal.active {
+    display: flex;
+}
+
+.experts-modal-content {
+    position: relative;
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--card-border);
+    padding: var(--spacing-xl);
+    max-width: 1000px;
+    width: 100%;
+    margin: var(--spacing-xl) auto;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.experts-modal-close {
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    width: 36px;
+    height: 36px;
+    background-color: rgba(0, 0, 0, 0.05);
+    border: none;
+    border-radius: var(--radius-full);
+    color: var(--text-secondary);
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+}
+
+.experts-modal-close:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: var(--text-primary);
+}
+
+.experts-modal-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+    text-align: center;
+}
+
+.experts-modal-subtitle {
+    font-size: 14px;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.experts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+}
+
+@media (max-width: 900px) {
+    .experts-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .experts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.expert-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all var(--transition-normal);
+}
+
+.expert-card.highlighted {
+    border-color: var(--whatsapp-green);
+    box-shadow: 0 0 0 3px var(--whatsapp-green-light), 0 8px 24px var(--card-shadow);
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.expert-header {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.expert-icon {
+    font-size: 32px;
+}
+
+.expert-header h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.expert-role {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.expert-description {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: var(--spacing-md);
+}
+
+.expert-looks-for {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-sm);
+}
+
+.expert-looks-for strong {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: var(--spacing-xs);
+}
+
+.expert-looks-for ul {
+    margin: 0;
+    padding-left: var(--spacing-md);
+}
+
+.expert-looks-for li {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    line-height: 1.4;
+}
+
+.expert-looks-for li:last-child {
+    margin-bottom: 0;
+}
+
+/* ==========================================
+   Meet Experts Button in Header - Subtle Link Style
+   ========================================== */
+.meet-experts-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background-color: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-family: var(--font-family);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.meet-experts-btn:hover {
+    color: var(--text-primary);
+    background-color: rgba(0, 0, 0, 0.05);
+}
