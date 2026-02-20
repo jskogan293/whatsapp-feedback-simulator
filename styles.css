@@ -91,7 +91,7 @@ html {
 
 body {
     font-family: var(--font-family);
-    background: linear-gradient(135deg, #075E54 0%, #128C7E 40%, #25D366 100%);
+    background: linear-gradient(135deg, #c8ede6 0%, #a8ddd4 40%, #d4f5e2 100%);
     background-attachment: fixed;
     color: var(--text-primary);
     line-height: 1.5;
