@@ -708,8 +708,8 @@ document.addEventListener('paste', (e) => {
     }
 });
 
-// API Configuration - always use localhost:5001 for the backend server
-const API_BASE_URL = 'http://localhost:5001';
+// API Configuration - use relative URL so it works for all users on any host
+const API_BASE_URL = '';
 
 // Loading messages and expert cycling
 const LOADING_MESSAGES = [
